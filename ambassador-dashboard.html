@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ambassador Dashboard</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        var login_success = false;
+        var ambassador_id = 0;
+        $(function() {
+            preventDirectAccess();
+            $.post('ambassador-dashboard.php', {
+                'ambassador_id': ambassador_id
+            }, function(result) {
+                console.log('post success: starts');
+                console.log(result);
+                console.log(JSON.parse(result));
+                console.log('post success: ends');
+            });
+        });
+
+        function preventDirectAccess() {
+            var cookies = document.cookie.split('; ');
+            for (let cookie of cookies) {
+                key = cookie.split('=')[0];
+                value = cookie.split('=')[1];
+                // console.log(key + " -> " + value);
+                if (key == 'login-success') {
+                    login_success = value;
+                }
+                if (key == 'ambassador_id') {
+                    ambassador_id = Number.parseInt(value);
+                }
+            }
+            console.log('login_success: ' + login_success);
+            if (login_success && ambassador_id > 0) {
+                // alert('Welcome Dear Ambassador');
+            } else {
+                window.location.href = 'http://localhost/IEEE%20WIE%20ILS/wieils-site-01/registration-system/login.html';
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+
+    </header>
+    <main>
+
+    </main>
+    <footer>
+
+    </footer>
+</body>
+
+</html>

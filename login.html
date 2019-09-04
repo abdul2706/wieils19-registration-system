@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        var login_success = '';
+        $(function() {
+            document.cookie = "ambassador-login=true; path=/";
+            var cookies = document.cookie.split('; ');
+            for (let cookie of cookies) {
+                key = cookie.split('=')[0];
+                value = cookie.split('=')[1];
+                if (key == 'login-success') {
+                    login_success = value;
+                }
+            }
+            if (login_success == 'false') {
+                alert('Error Logging In. Use correct Username and Password.\nIn case you forgot you credentials then Contact WIE ILS at https://wieils-islamabad.com/contact-us');
+            }
+            document.cookie = "login-success=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        });
+    </script>
+    <style type="text/css">
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        #background {
+            z-index: -1;
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .aa {
+            width: 70%;
+            box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .32);
+            background: rgba(255, 255, 255, .5);
+            backdrop-filter: blur(5px);
+            padding: 30px;
+            border-radius: 15px;
+            font-weight: bolder;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        
+        .aa input {
+            font-size: 1em;
+            padding: 4px 8px;
+            border: 0;
+            border-radius: 10000px;
+        }
+        
+        .aa input[type="submit"] {
+            background-color: pink;
+            border: 1px solid rgb(255, 105, 180);
+            font-weight: bolder;
+            padding: 8px 16px;
+        }
+        
+        .aa input[type="submit"]:hover {
+            background-color: rgb(255, 105, 180);
+            color: white;
+        }
+        
+        .bb {
+            width: 50%;
+            max-width: 256px;
+            margin: 16px;
+        }
+        
+        form {
+            text-align: center;
+        }
+        
+        @media (min-width: 800px) {
+            .aa {
+                width: 50%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <img id="background" src="background.jpg">
+    <div class="aa">
+        <img class="bb" src="logo.png"></br>
+        </br>
+        <form action="login.php" method="POST">
+            <input id="username" type="text" name="username" placeholder="ENTER USERNAME" size="32" required></br>
+            </br>
+            <input id="password" type="password" name="password" placeholder="ENTER USASSWORD" size="32" required></br>
+            </br>
+            </br>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+
+</body>
+
+</html>

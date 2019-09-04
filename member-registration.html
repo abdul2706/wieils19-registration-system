@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        text-danger {
+            color: #e74c3c;
+        }
+        
+        div.a {
+            text-align: center;
+            font-weight: bold;
+            color: #00008B;
+        }
+        
+        img {
+            max-width: 200px;
+        }
+        
+        input[type=file] {
+            padding: 10px;
+            background: #2d2d2d;
+        }
+        
+        input[type=text],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: horizontal;
+        }
+        
+        legend {
+            font: bold 1.0em Arial, Helvetica, sans-serif;
+            color: #00008B;
+            background-color: #FFFFFF;
+        }
+        
+        label {
+            padding: 12px 12px 12px 0;
+            display: inline-block;
+        }
+        
+        input[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+        }
+        
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+        
+        .container {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+        
+        fieldset {
+            border: 1px solid #61B5CF;
+            margin-top: 1.4em;
+            padding: 0.6em;
+        }
+        /* Clear floats after the columns */
+        
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+        
+        @media screen and (max-width: 600px) {
+            .col-25,
+            .col-75,
+            input[type=submit] {
+                width: 100%;
+                margin-top: 0;
+            }
+        }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        /* Hide default HTML checkbox */
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        /* The slider */
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+        
+        input:checked+.slider {
+            background-color: #2196F3;
+        }
+        
+        input:focus+.slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+        
+        input:checked+.slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+        
+        input:not([type=submit]):invalid {
+            background-color: #ffdddd;
+        }
+        
+        input:not([type=submit]):valid {
+            background-color: #ddffdd;
+        }
+        
+        input:not([type=submit]):invalid:required {
+            background: #ffdddd url('http://www.developerdrive.com/wp-content/uploads/2013/08/asterisk1.png') no-repeat right top;
+        }
+        
+        input:not([type=submit]):valid:required {
+            background: #ddffdd url('http://www.developerdrive.com/wp-content/uploads/2013/08/asterisk1.png') no-repeat right top;
+        }
+        
+        input:not([type=submit]):optional {
+            background-color: #add1ef;
+        }
+        /* Rounded sliders */
+        
+        .slider.round {
+            border-radius: 34px;
+        }
+        
+        .slider.round:before {
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="a">
+            <h2 style="font-family: courier"> WIE ILS'19 Registration</h2>
+        </div>
+
+        <form id="registration-form" enctype="multipart/form-data">
+            <fieldset>
+                <legend>Personal Information</legend>
+
+                <!-- name -->
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">Name</label>
+                    <div class="col-md-3 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="name" placeholder="Enter Full Name" class="form-control" type="text" maxlength="30" required value="Abdul Rehman Khan">
+                        </div>
+                    </div>
+                </div>
+                <br></br>
+
+                <!-- email -->
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">Email</label>
+                    <div class="col-md-3 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                            <input name="email" placeholder="e.g. xyz@domain.com" class="form-control" type="text" maxlength="30" required value="abdulrehmankhan@gmail.com">
+                        </div>
+                    </div>
+                </div>
+                <br></br>
+
+                <!-- contact no -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Contact No.</label>
+                    <div class="col-md-3 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                            <input name="contact_no" placeholder="(+92)" class="form-control" type="number" required value="923311205526">
+                        </div>
+                    </div>
+                </div>
+                <br></br>
+
+                <!-- cnic no -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label">CNIC No.</label>
+                    <div class="col-md-3 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="cnic_no" placeholder="No-Hyphens" class="form-control" type="number" required value="3410130500399">
+                        </div>
+                    </div>
+                </div>
+                <br></br>
+
+                <!-- address -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Address</label>
+                    <div class="col-md-3 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+                            <input name="address" placeholder="Address" class="form-control" type="text" maxlength="128" value="khaqan st#1, arif colony, gill road, grw">
+                        </div>
+                    </div>
+                </div>
+                <br></br>
+
+                <!-- province -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Province</label>
+                    <div class="col-md-3 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+                            <input name="province" placeholder="Province" class="form-control" type="text" maxlength="20" value="Punjab">
+                        </div>
+                    </div>
+                </div>
+                <br></br>
+
+                <!-- city -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label">City</label>
+                    <div class="col-md-3 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+                            <input name="city" placeholder="City" class="form-control" type="text" maxlength="20" value="Gujranwala">
+                        </div>
+                    </div>
+                </div>
+                <br></br>
+            </fieldset>
+
+            <fieldset>
+                <legend>Education Details</legend>
+
+                <!-- university/institute -->
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">University/Institute</label>
+                    <div class="col-md-3 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-education"></i></span>
+                            <select name="university" id="university" class="form-control" required>
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <br></br>
+
+                <!-- ambassador -->
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">Ambassador</label>
+                    <div class="col-md-3 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <select name="ambassador" id="ambassador" class="form-control" required>
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <br></br>
+
+                <!-- department -->
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">Department</label>
+                    <div class="col-md-3 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-education"></i></span>
+                            <input name="department" placeholder="" class="form-control" type="text" maxlength="20" value="DCIS">
+                        </div>
+                    </div>
+                </div>
+                <br></br>
+
+                <!-- degree program -->
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">Degree Program</label>
+                    <div class="col-md-3 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-education"></i></span>
+                            <input name="degree" placeholder="" class="form-control" type="text" maxlength="20" value="BSCIS">
+                        </div>
+                    </div>
+                </div>
+                <br></br>
+
+                <!-- semester -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Semester</label>
+                    <div class="col-md-3 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-education"></i></span>
+                            <input name="semester" placeholder="" class="form-control" type="number" value="5">
+                        </div>
+                    </div>
+                </div>
+                <br></br>
+
+                <!-- ieee no -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label">IEEE No.</label>
+                    <div class="col-md-3 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-info-sign"></i></span>
+                            <input name="ieee_no" placeholder="" class="form-control" type="number" value="95158645">
+                        </div>
+                    </div>
+                </div>
+                <br></br>
+
+                <!-- shirt size -->
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">Shirt Size</label>
+                    <div class="col-md-3 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-info-sign"></i></span>
+                            <select name="shirt_size" id="shirt-size" class="form-control" required>
+                                <option></option>
+                                <option value="small">Small</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="large">Large</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <br></br>
+            </fieldset>
+
+            <fieldset>
+                <legend>Required Images</legend>
+
+                <!-- your photo -->
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">Your Photo</label>
+                    <div class="col-md-3 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
+                            <input id="member-photo" type="file" name="member_photo" accept="image/*" required>
+                        </div>
+                    </div>
+                </div>
+                <br></br>
+
+                <!-- cnic front photo -->
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">CNIC Front Photo</label>
+                    <div class="col-md-3 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
+                            <input id="member-cnic-front" type="file" name="member_cnic_front" accept="image/*" required>
+                        </div>
+                    </div>
+                </div>
+                <br></br>
+
+                <!-- cnic back photo -->
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">CNIC Back Photo</label>
+                    <div class="col-md-3 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
+                            <input id="member-cnic-back" type="file" name="member_cnic_back" accept="image/*" required>
+                        </div>
+                    </div>
+                </div>
+                <br></br>
+            </fieldset>
+
+            <!-- <input type="file" name="pic" accept="image/*"> -->
+
+            <!-- <h5 style="font-weight:bold">Do you need accomodation?</h5>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label> -->
+            <br>
+            <br>
+            <button type="submit" name="submit" value="registration" id="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        $('input[type="file"]').change(function() {
+            console.log('member_photo change: starts');
+            let oneMB = 1024 * 1024;
+            var image_file = this.files[0];
+            console.log('size: ' + image_file.size);
+            if (image_file.size > oneMB) {
+                alert('File Size must be less then 1MB.\nUse paint to resize your photo.');
+                this.value = null;
+            }
+            console.log('member_photo change: ends');
+        });
+
+        $.ajax({
+            type: "POST",
+            url: 'get-ambassadors-universities.php',
+            success: function(result) {
+                let ambassadors = result.split('<end>')[0].split(';');
+                let universities = result.split('<end>')[1].split(';');
+                for (let i of ambassadors) {
+                    if (i != '') {
+                        $('#ambassador').append('<option value="' + i.split(':')[0] + '">' + i.split(':')[1] + '</option>');
+                    }
+                }
+                for (let i of universities) {
+                    if (i != '') {
+                        $('#university').append('<option value="' + i.split(':')[0] + '">' + i.split(':')[1] + '</option>');
+                    }
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log("Error, status = " + textStatus + ", " + "error thrown: " + errorThrown);
+                alert('Error submitting form, kindly try again.\nView Developers Console for more details.');
+            }
+        });
+
+        $('#registration-form').submit(function(e) {
+            console.log('submit: starts');
+            e.preventDefault();
+            document.cookie = "register-member=true; path=/";
+            console.log('submit: ajax-posting');
+            $.ajax({
+                type: "POST",
+                url: 'member-registration.php',
+                data: new FormData(this),
+                // dataType: 'json',
+                contentType: false,
+                processData: false,
+                cache: false,
+                success: function(result) {
+                    console.log('ajax success: starts');
+                    console.log(result);
+                    let registration_success = false;
+                    let cookies = document.cookie.split('; ');
+                    for (let cookie of cookies) {
+                        let key = cookie.split('=')[0];
+                        let value = cookie.split('=')[1];
+                        console.log('key: ' + key + ', value: ' + value);
+                        if (key == 'member-registered' && value == 'true') {
+                            registration_success = true;
+                            break;
+                        }
+                    }
+                    if (registration_success) {
+                        alert('Congrats! You are Registered Successfully for IEEE WIE ILS`19.');
+                    } else {
+                        alert('Sorry! There was error during registration process, kindly try again.');
+                    }
+                    document.cookie = "member-registered=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                    console.log('ajax success: ends');
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log('ajax error: starts');
+                    console.log("Error, status = " + textStatus + ", " + "error thrown: " + errorThrown);
+                    alert('Error submitting form, kindly try again.\nView Developers Console for more details.');
+                    console.log('ajax error: ends');
+                }
+            });
+            console.log('submit: ends');
+        });
+    </script>
+</body>
+
+</html>
